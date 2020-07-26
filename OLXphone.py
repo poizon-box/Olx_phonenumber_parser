@@ -39,7 +39,6 @@ curagent = choice(desktop_agents)
 def olxGetPage(link):
     '''Simply choose random user-agent and request site'''
 
-
     s = requests.Session()
     s.headers.update({'User-Agent': curagent})
     init = s.get(link)
@@ -77,8 +76,8 @@ def parseJsonToNumber(numeryraw):
 
 
         if numerydict['value'].startswith('<span'):
-            zupkaztelefonow = BeautifulSoup(numerydict['value'], 'html.parser')
-            abc = zupkaztelefonow.findAll(class_='block')
+            phonesoup = BeautifulSoup(numerydict['value'], 'html.parser')
+            abc = phonesoup.findAll(class_='block')
 
             numery = [''.join(x.text.split(' ')) for x in abc]
 
@@ -101,17 +100,7 @@ def olxGetDescription(soup):
     opisbs = soup.findAll(id='textContent')
     textopis = [x.text for x in opisbs]
 
-    if textopis == []:
-        textopis = 'Brak opisu'
-    else:
-        textopis = textopis[-1]
-
-
-
-
-
-
-    return textopis
+    return textopis[-1] or 'Brak opisu'
 
 
 
