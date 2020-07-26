@@ -7,7 +7,7 @@ requests >= 2.21.0
 
 
 USAGE:
-$python3 OLXphone.py <link>
+$python3 OLXphone.py link
 
 returns 9 digit phone number of advertiser
 
